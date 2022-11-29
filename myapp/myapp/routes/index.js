@@ -42,7 +42,7 @@ router.get('/select',function(req, res, next){
 });
 
 router.get('/form',function(req, res, next){
-  res.render('form')
+  res.render('form',{ books :{}})
 })
 
 router.post('/form', function(req, res, next){
@@ -57,6 +57,21 @@ router.post('/form', function(req, res, next){
 router.get('/delete',function(req, res, next){
   db.query('DELETE FROM tb_book WHERE id = ?',req.query.id, function(err, rs){
     res.redirect('/select')
+  })
+})
+router.get('/edit',function(req, res, next){
+  db.query('SELECT * FROM tb_book WHERE id = ?',req.query.id,function(err, rs){
+    res.render('form',{books :rs[0]})
+  })
+})
+
+router.post('/edit',function(req, res, next){
+  var param = [
+    req.body,
+    req.query.id
+  ]
+  db.query('UPDATE tb_book SET ? WHERE id = ?', param, function(err, rs){
+    res.redirect('select');
   })
 })
 module.exports = router;
