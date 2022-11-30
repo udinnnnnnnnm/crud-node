@@ -1,19 +1,19 @@
+
+var db = require('../db/index')
+
 var express = require('express');
 var router = express.Router();
 
-var mysql = require('mysql')
-var db = mysql.createPool({
-  host:'localhost',
-  user:'root',
-  database:'crud_need',
-  debug:false
-})
+var todo = require('../controllers/NewController')
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router. get('/hume',todo.list_all_tasks)
 router.get('/json',function(req,res){
   db.query('SELECT * FROM tb_book', function(err,rs){
     console.log(rs)
@@ -70,6 +70,8 @@ router.post('/edit',function(req, res, next){
     req.body,
     req.query.id
   ]
+
+  
   db.query('UPDATE tb_book SET ? WHERE id = ?', param, function(err, rs){
     res.redirect('select');
   })
