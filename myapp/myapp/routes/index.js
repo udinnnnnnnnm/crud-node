@@ -35,6 +35,8 @@ router.get('/test',function(req, res, next){
 })
 
 router.get('/select',todo.select_tasks);
+router.get('/find/:id',todo.test_id);
+
 
 router.get('/select/:id',function(req, res, next){  
   db.query('SELECT * FROM tb_book WHERE id = ?',req.params.id, function(err,rs){

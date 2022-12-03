@@ -12,10 +12,16 @@ exports.test_modul = function(req, res){
   bookData.getAll(function(data){
     res.render('select',{books: data})
   });
-  // bookData.getAll(function(err,rs){
-  //   res.render('select',{books: rs});
 
-  // })
+}
+exports.test_id= function(req,res){
+
+     bookData.getById(req.params.id,function(response){
+      res.send({book: response})
+
+     });
+
+  
 }
 
 exports.select_tasks = function(req, res, next){
