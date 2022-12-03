@@ -10,7 +10,7 @@ var todo = require('../controllers/NewController')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express2' });
 });
 
 router. get('/hume',todo.list_all_tasks)
@@ -18,10 +18,13 @@ router.get('/json',function(req,res){
   db.query('SELECT * FROM tb_book', function(err,rs){
     console.log(rs)
     
-    res.json({uu: rs[0]})
+    res.json({uu: rs[2]})
   })
   
 })
+
+
+router.get('/modul',todo.test_modul)
 router.get('/test',function(req, res, next){
   if(db!=null){
     res.send('connect sucsess')
@@ -31,15 +34,15 @@ router.get('/test',function(req, res, next){
   }
 })
 
-router.get('/select',function(req, res, next){
+router.get('/select',todo.select_tasks);
 
-  
-  db.query('SELECT * FROM tb_book', function(err,rs){
-    console.log(typeof(rs))
-    res.render('select',{books: rs});
+router.get('/select/:id',function(req, res, next){  
+  db.query('SELECT * FROM tb_book WHERE id = ?',req.params.id, function(err,rs){
+    res.json(rs)
+    console.log(rs)
 
   });
-});
+})
 
 router.get('/form',function(req, res, next){
   res.render('form',{ books :{}})
