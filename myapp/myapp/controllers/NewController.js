@@ -17,12 +17,46 @@ exports.test_modul = function(req, res){
 exports.test_id= function(req,res){
 
      bookData.getById(req.params.id,function(response){
+      console.log(response)
       res.send({book: response})
 
+      console.log('haha')
+
      });
+     console.log('haha')
 
   
 }
+
+exports.test_form = function(req, res, next){
+  res.render('form',{ books :{}})
+}
+
+exports.post_form = function(req, res, next){
+  bookData.getForm(req.body.id,function(){
+
+    res.redirect('/select')
+
+  })
+}
+
+exports.test_delete = function(req,res){
+  bookData.getDelete(req.query.id,function(err,rs){
+    res.redirect('/select')
+  })
+
+}
+
+exports.test_edit = function(req, res){
+  bookData.getEdit(req.query.id,function(err,rs){
+    res.render('form',{books :err[0]})
+
+  })
+}
+
+
+
+
 
 exports.select_tasks = function(req, res, next){
 

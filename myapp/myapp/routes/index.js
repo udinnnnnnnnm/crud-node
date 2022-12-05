@@ -45,6 +45,15 @@ router.get('/select/:id',function(req, res, next){
 
   });
 })
+router.get('/tform',todo.test_form)
+router.post('/tform',todo.post_form)
+router.get('/tdelete',todo.test_delete)
+router.get('/tedit',todo.test_edit)
+router.post('/tedit',todo.test_edit)
+
+
+
+
 
 router.get('/form',function(req, res, next){
   res.render('form',{ books :{}})
@@ -60,7 +69,9 @@ router.post('/form', function(req, res, next){
 })
 
 router.get('/delete',function(req, res, next){
+  console.log(req.query.id)
   db.query('DELETE FROM tb_book WHERE id = ?',req.query.id, function(err, rs){
+    console.log(rs)
     res.redirect('/select')
   })
 })
@@ -68,6 +79,7 @@ router.get('/edit',function(req, res, next){
   db.query('SELECT * FROM tb_book WHERE id = ?',req.query.id,function(err, rs){
     res.render('form',{books :rs[0]})
   })
+
 })
 
 router.post('/edit',function(req, res, next){
