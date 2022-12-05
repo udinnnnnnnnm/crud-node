@@ -49,7 +49,7 @@ router.get('/tform',todo.test_form)
 router.post('/tform',todo.post_form)
 router.get('/tdelete',todo.test_delete)
 router.get('/tedit',todo.test_edit)
-router.post('/tedit',todo.test_edit)
+router.post('/tedit',todo.update_form)
 
 
 

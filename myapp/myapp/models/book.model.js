@@ -32,10 +32,16 @@ Book.getDelete = function(id,result){
     })
 }
 Book.getEdit = function(id,result){
+
     db.query('SELECT * FROM tb_book WHERE id = ?',id,function(err,book){
         result(book)
     })
 
 
+}
+Book.getUpdate = function(query,id,result){
+    db.query('UPDATE tb_book SET ? WHERE id = ?',[query,id],function(err,book){
+        result(book)
+    })
 }
 module.exports = Book;

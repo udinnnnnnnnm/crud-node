@@ -53,6 +53,12 @@ exports.test_edit = function(req, res){
 
   })
 }
+exports.update_form = function(req,res){
+  bookData.getUpdate(req.body,req.query.id,function(response){
+    res.redirect('/select')
+    
+  })
+}
 
 
 
