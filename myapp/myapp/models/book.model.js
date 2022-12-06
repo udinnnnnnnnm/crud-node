@@ -5,10 +5,10 @@ const Book = function(book){
 }
 Book.getAll = function(result){
   
-    db.query('SELECT * FROM tb_book', function(err,book){
-        console.log(book)
+    db.query('SELECT * FROM tb_book', function(err,books){
+        console.log(Book.getAll)
         
-        result(book)
+        result(books)
     });
   };
 

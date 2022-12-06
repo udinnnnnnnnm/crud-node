@@ -10,6 +10,7 @@ exports.test_modul = function(req, res){
 
 
   bookData.getAll(function(data){
+    console.log(data)
     res.render('select',{books: data})
   });
 
