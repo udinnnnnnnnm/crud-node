@@ -49,8 +49,11 @@ exports.test_delete = function(req,res){
 }
 
 exports.test_edit = function(req, res){
-  bookData.getEdit(req.query.id,function(err,rs){
-    res.render('form',{books :err[0]})
+  var id =req.query.id
+  bookData.getEdit(id,function(rs){
+  
+
+    res.render('form',{books :rs[0]})
 
   })
 }
@@ -60,8 +63,27 @@ exports.update_form = function(req,res){
     
   })
 }
+exports.add = function(req,res){
+  var data = req.body;
+  bookData.getAdd(data,function(response){
+    console.log(response)
+    res.send({books: response})
+  })
+}
 
+exports.delete = function(req,res){
+  var id = req.params.id
+  bookData.getRemove(id,function(response){
+    res.send({response})
+  })
+}
+exports.update = function(req,res){
+  var data =req.body;
+  bookData.getTupdate(data,function(response){
+    res.send({books:response})
+  })
 
+}
 
 
 

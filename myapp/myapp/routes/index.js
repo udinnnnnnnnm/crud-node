@@ -50,6 +50,9 @@ router.post('/tform',todo.post_form)
 router.get('/tdelete',todo.test_delete)
 router.get('/tedit',todo.test_edit)
 router.post('/tedit',todo.update_form)
+router.post('/add',todo.add)
+router.delete('/delete/:id',todo.delete)
+router.put('/update',todo.update)
 
 
 
