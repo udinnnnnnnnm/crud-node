@@ -77,6 +77,13 @@ Book.getRemove = function(id,result){
 }
 
 Book.getTupdate = function(data,result){
-    result(data)
+    db.query('UPDATE tb_book SET name=? ,price =? WHERE id = ?',[data.name, data.price, data.id],function(err){
+        if (err){
+            result(null)
+        }else{
+            result(data)
+        }
+    })
+    
 }
 module.exports = Book;
